@@ -10,6 +10,8 @@ import AuditSection from "../Home/AuditSection";
 import WorkflowSection from "../Home/WorkflowSection";
 import InvestmentSection from "../Home/InvestmentSection";
 import PaymentSection from "../Home/PaymentSection";
+import FAQSection from "../Home/FAQSection";
+import FutureSection from "../Home/FutureSection";
 
 const Home = () => {
     return (
@@ -24,6 +26,8 @@ const Home = () => {
             <WorkflowSection/>
             <InvestmentSection/>
             <PaymentSection/>
+            <FAQSection/>
+            <FutureSection/>
 
         </div>
     );
