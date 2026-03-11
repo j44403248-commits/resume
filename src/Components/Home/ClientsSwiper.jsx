@@ -4,7 +4,6 @@ import { Autoplay, FreeMode } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/free-mode";
 
-// Clients array
 const clients = [
   { name: "Nvidia", logo: "https://s3.amazonaws.com/cms.ipressroom.com/219/files/202512/692f50553d6332b453bbc5c2_nvidia-logo-vert-blk/nvidia-logo-vert-blk_thmb.png" },
   { name: "Itel", logo: "https://static.vecteezy.com/system/resources/previews/020/927/134/non_2x/itel-brand-logo-phone-symbol-black-design-china-mobile-illustration-free-vector.jpg" },
@@ -26,59 +25,72 @@ const clients = [
 
 const ClientsSwiper = () => {
   return (
-    <div className="py-16 bg-gray-50 dark:bg-gray-950">
+    <div className="py-20 bg-black overflow-hidden border-t border-white/5">
       
-      <h5 className="text-xl text-center text-gray-800 dark:text-white mb-8">
-        Clients hired at companies like
-      </h5>
+      <div className="flex flex-col items-center mb-12">
+        <h5 className="text-xs font-black uppercase tracking-[0.5em] text-yellow-500 mb-3">
+          Global Reach
+        </h5>
+        <h2 className="text-2xl font-bold text-white tracking-tighter">
+          Our Clients Work At <span className="italic text-yellow-500">World-Class</span> Companies
+        </h2>
+      </div>
 
       <Swiper
         modules={[Autoplay, FreeMode]}
-        spaceBetween={15}
-        slidesPerView={8}
+        spaceBetween={20}
+        slidesPerView={2}
+        breakpoints={{
+          640: { slidesPerView: 4 },
+          1024: { slidesPerView: 6 },
+          1280: { slidesPerView: 8 },
+        }}
         loop={true}
         freeMode={true}
-        speed={3000}
+        speed={4000}
         autoplay={{
           delay: 0,
           disableOnInteraction: false,
         }}
-        className="mx-auto"
+        className="clients-swiper"
       >
-
         {clients.map((client, idx) => (
-          <SwiperSlide key={idx}>
-
+          <SwiperSlide key={idx} className="pb-4">
             <div className="
-            flex items-center justify-center gap-2
-            bg-white dark:bg-gray-800
-            rounded-md
-            px-3 py-2
-            h-12
-            border border-transparent
-            hover:border-orange-500
-            transition-all duration-300
-            shadow-sm hover:shadow-md
-            
+              flex items-center justify-center gap-3
+              bg-white rounded-xl
+              px-4 py-3
+              h-14
+              border border-transparent
+              hover:border-yellow-500
+              hover:shadow-[0_0_15px_rgba(234,179,8,0.3)]
+              transition-all duration-500
+              group cursor-default
             ">
-
-              <img
-                src={client.logo}
-                alt={client.name}
-                className="h-5 w-auto object-contain"
-              />
-
-              <span className="text-xs font-medium text-gray-700 dark:text-gray-200">
+              {/* FIXED IMAGE LOGIC */}
+              <div className="h-7 w-auto flex items-center justify-center overflow-hidden">
+                <img
+                  src={client.logo}
+                  alt={client.name}
+                  className="h-full w-full object-contain transition-all duration-500 filter contrast-125"
+                />
+              </div>
+              
+              <span className="text-[10px] font-black uppercase tracking-widest text-black/80 group-hover:text-yellow-600 transition-colors">
                 {client.name}
               </span>
-
             </div>
-
           </SwiperSlide>
         ))}
-
       </Swiper>
-
+      
+      {/* Visual Fade Gradient for Premium Look */}
+      <style dangerouslySetInnerHTML={{ __html: `
+        .clients-swiper {
+          mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+          -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+        }
+      `}} />
     </div>
   );
 };
