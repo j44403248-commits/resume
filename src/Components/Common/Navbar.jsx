@@ -43,16 +43,6 @@ const Navbar = () => {
           </div>
         </div>
 
-<<<<<<< HEAD
-        {/* Center Links */}
-        <ul className="hidden md:flex space-x-8 text-gray-700 dark:text-gray-200 font-medium">
-          <li className="hover:text-blue-600 cursor-pointer">Services</li>
-        <link></link>  <li className="hover:text-blue-600 cursor-pointer">Pricing</li>
-          <li className="hover:text-blue-600 cursor-pointer">Samples</li>
-          <li className="hover:text-blue-600 cursor-pointer">Work</li>
-          <li className="hover:text-blue-600 cursor-pointer">Process</li>
-          <li className="hover:text-blue-600 cursor-pointer">FAQ</li>
-=======
         {/* Desktop Navigation with Animated Bottom Line */}
         <ul className="hidden lg:flex items-center gap-10">
           {navLinks.map((link) => (
@@ -67,7 +57,6 @@ const Navbar = () => {
               <span className="absolute bottom-0 left-0 w-0 h-[2.5px] bg-yellow-500 transition-all duration-300 group-hover:w-full"></span>
             </li>
           ))}
->>>>>>> 59cb7a7201b1d8f143b4c199902574dad23da64b
         </ul>
 
         {/* Action Area */}
