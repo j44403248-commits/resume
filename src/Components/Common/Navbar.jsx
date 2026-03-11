@@ -1,56 +1,108 @@
 import { useState, useEffect } from "react";
-import { Moon, Sun } from "lucide-react";
+import { Menu, X, ArrowUpRight, Sparkles } from "lucide-react";
 
 const Navbar = () => {
-  const [darkMode, setDarkMode] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  const navLinks = [
+    { name: "Services", id: "services" },
+    { name: "Pricing", id: "pricing" },
+    { name: "Samples", id: "samples" },
+    { name: "Work",  id: "work" },
+    { name: "Process", id: "process" },
+    { name: "FAQ", id: "faq" },
+  ];
 
   useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [darkMode]);
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <nav className="w-full fixed top-0 left-0 bg-white dark:bg-gray-900 shadow-md z-50">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <nav 
+      className={`w-full fixed top-0 left-0 z-[100] transition-all duration-500 ${
+        scrolled 
+          ? "py-3 bg-black/95 backdrop-blur-xl border-b border-yellow-500/30 shadow-[0_10px_40px_rgba(0,0,0,0.9)]" 
+          : "py-6 bg-black" 
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-8 flex items-center justify-between">
         
-        {/* Logo */}
-        <div className="text-2xl font-bold text-blue-600 dark:text-white">
-          Resume
+        {/* Brand Identity */}
+        <div className="flex items-center gap-3 group cursor-pointer">
+          <div className="relative w-10 h-10 bg-yellow-500 rounded-lg flex items-center justify-center transform group-hover:rotate-12 transition-all duration-300 shadow-[0_0_20px_rgba(234,179,8,0.5)]">
+            <Sparkles size={22} className="text-black" />
+          </div>
+          <div className="flex flex-col leading-none">
+            <span className="text-xl font-black tracking-tighter text-white uppercase italic">
+              UPLIFT<span className="text-yellow-500">.</span>
+            </span>
+            <span className="text-[10px] font-bold tracking-[0.4em] text-yellow-500 uppercase">Gallery</span>
+          </div>
         </div>
 
-        {/* Center Links */}
-        <ul className="hidden md:flex space-x-8 text-gray-700 dark:text-gray-200 font-medium">
-          <li className="hover:text-blue-600 cursor-pointer">Services</li>
-          <li className="hover:text-blue-600 cursor-pointer">Pricing</li>
-          <li className="hover:text-blue-600 cursor-pointer">Samples</li>
-          <li className="hover:text-blue-600 cursor-pointer">Work</li>
-          <li className="hover:text-blue-600 cursor-pointer">Process</li>
-          <li className="hover:text-blue-600 cursor-pointer">FAQ</li>
+        {/* Desktop Navigation with Animated Bottom Line */}
+        <ul className="hidden lg:flex items-center gap-10">
+          {navLinks.map((link) => (
+            <li key={link.name} className="relative group">
+              <a 
+                href={link.path} 
+                className="text-[12px] font-black uppercase tracking-[0.2em] text-white/80 group-hover:text-yellow-500 transition-colors duration-300 block py-2"
+              >
+                {link.name}
+              </a>
+              {/* Bottom Line Animation */}
+              <span className="absolute bottom-0 left-0 w-0 h-[2.5px] bg-yellow-500 transition-all duration-300 group-hover:w-full"></span>
+            </li>
+          ))}
         </ul>
 
-        {/* Right Side */}
-        <div className="flex items-center space-x-4">
+        {/* Action Area */}
+        <div className="flex items-center gap-6">
           
-          {/* Dark Mode Toggle */}
-          <button
-            onClick={() => setDarkMode(!darkMode)}
-            className="p-2 rounded-full bg-gray-200 dark:bg-gray-700"
-          >
-            {darkMode ? (
-              <Sun size={20} className="text-yellow-500" />
-            ) : (
-              <Moon size={20} className="text-gray-800" />
-            )}
+          {/* Main CTA: High-Contrast Yellow Button */}
+          <button className="hidden sm:flex items-center gap-2 bg-yellow-500 text-black px-7 py-2.5 rounded-full font-black text-[12px] tracking-[0.15em] uppercase hover:bg-white hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] transition-all active:scale-95">
+            Hire Me <ArrowUpRight size={16} />
           </button>
 
-          {/* Hire Me Button */}
-          <button className="bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-700 transition">
-            Hire Me
+          {/* Mobile Menu Toggle */}
+          <button 
+            className="lg:hidden text-yellow-500 hover:scale-110 transition-transform"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <X size={32} /> : <Menu size={32} />}
           </button>
         </div>
+      </div>
+
+      {/* Mobile Drawer */}
+      <div className={`lg:hidden fixed inset-x-0 top-0 h-screen bg-black transition-all duration-500 ease-in-out ${isMobileMenuOpen ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 pointer-events-none"}`}>
+        {/* Close Button inside Full Screen Menu */}
+        <div className="flex justify-end p-8">
+           <button onClick={() => setIsMobileMenuOpen(false)} className="text-yellow-500">
+             <X size={40} />
+           </button>
+        </div>
+        
+        <ul className="flex flex-col items-center justify-center h-full space-y-10 pb-20">
+          {navLinks.map((link, i) => (
+            <li key={link.name} className="text-center">
+              <a 
+                href={link.path}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-4xl font-black text-white hover:text-yellow-500 transition-all uppercase tracking-tighter"
+              >
+                <span className="text-yellow-500 text-sm mr-2 italic">0{i+1}.</span>
+                {link.name}
+              </a>
+            </li>
+          ))}
+          <button className="mt-4 bg-yellow-500 text-black px-10 py-5 rounded-full font-black tracking-widest uppercase text-lg shadow-2xl">
+            Start A Project
+          </button>
+        </ul>
       </div>
     </nav>
   );
