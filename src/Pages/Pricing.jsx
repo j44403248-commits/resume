@@ -1,7 +1,7 @@
 import React from 'react'
 import InvestmentSection from '../Components/Pricing/InvestmentSection'
 
-const Pricing = () => {
+const Pricing1= () => {
   return (
     <div>
 
@@ -10,4 +10,4 @@ const Pricing = () => {
   )
 }
 
-export default Pricing
+export default Pricing1;
