@@ -25,7 +25,7 @@ const PremiumServices = () => {
             </div>
 
             <h2 className="text-5xl lg:text-6xl font-black text-white leading-tight tracking-tighter">
-              Get Noticed. <span className="text-yellow-500 italic">Get Hired.</span>
+              Get Noticed. <span className="text-yellow-500 italic">Get Hired</span>
             </h2>
 
             <p className="mt-6 text-slate-400 text-lg leading-relaxed">
