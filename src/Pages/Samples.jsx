@@ -1,7 +1,7 @@
 import React from 'react'
 import SampleUplift from '../Components/Sample/Sampleuplift'
 
-const Samples = () => {
+const Samples1 = () => {
   return (
     <div>
 <SampleUplift/>
@@ -11,4 +11,4 @@ const Samples = () => {
   )
 }
 
-export default Samples
+export default Samples1;
