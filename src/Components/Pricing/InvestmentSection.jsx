@@ -74,7 +74,7 @@ const InvestmentSection = () => {
       </div>
 
       {/* CARDS */}
-      <div className="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
+      <div className="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-11">
 
         {plans.map((plan, index) => {
           const Icon = plan.icon;
