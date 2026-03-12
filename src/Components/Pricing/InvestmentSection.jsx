@@ -1,5 +1,6 @@
 import React from "react";
 import { ArrowRight, Check, User, Briefcase, Crown } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const plans = [
   {
@@ -178,10 +179,15 @@ const InvestmentSection = () => {
                 </div>
 
                 {/* button */}
-                <button className="w-full bg-yellow-500 text-black font-bold py-3 rounded-xl hover:bg-yellow-400 transition">
-                  Order Now
-                </button>
-
+      <Link
+  to="/checkout"
+  className="w-full block bg-yellow-500 text-black font-bold py-3 rounded-xl text-center hover:bg-yellow-400 transition"
+>
+  Order Now
+</Link>
+              
+               
+              
               </div>
 
             </div>
